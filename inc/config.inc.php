@@ -1,7 +1,5 @@
 <?php
 
-// Define configuration make sure to put the correct database name
-// if you have configure your MySQL root password, make sure to put the password 
 define("DB_HOST", "localhost");  
 define("DB_USER", "root");  
 define("DB_PASS", "");  

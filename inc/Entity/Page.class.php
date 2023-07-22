@@ -1,130 +1,119 @@
 <?php
 
-# Make sure to :
-# 1. Edit the studentName and studentID
-# 2. Edit the page's meta author and title
-# 3. Edit the page's main heading to use the static member
-# 4. Complete the listReservations(), addReservationForm() and editReservationForm()
-
 class Page  {
 
     public static $studentName = "Shinya Aoi";
     public static $studentID = "300369796";
 
-    static function header()   { ?>
+    static function header() { ?>
         <!-- Start the page 'header' -->
         <!DOCTYPE html>
         <html>
-            <head>
-                <title></title>
-                <meta charset="utf-8">
-                <meta name="author" content="">
-                <title>Resrevation Form</title>   
-                <link href="css/stylesA.css" rel="stylesheet">     
-            </head>
-            <body>
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="/css/styles.css">
+            <title>Document</title>
+        </head>
+        <body>
+            <div class="main-container">
                 <header>
-                <h1>Assignment 03: PDO CRUD with DAO -- <?= self::$studentName ?> (<?= self::$studentID ?>)</h1>
+                    <div><img src="" alt="logo"></div>
+                    <ul>
+                        <li><a href="">HOME</a></li>
+                        <li><a href="">Applications</a></li>
+                        <li><a href="">Companies</a></li>
+                    </ul>
+                    <div><a href="Login.php">sign in</a></div>
                 </header>
-                <article>
     <?php }
 
     static function footer()   { ?>
         <!-- Start the page's footer -->            
-                </article>
+                </div>
             </body>
         </html>
     <?php }
 
     // This function lists all reservation records
     // The $reservations is the array of Reservation object obtained from the ReservationDAO from the controller
-    static function listReservations(Array $reservations)    {
+    static function listJobApplications() {
     ?>
-        <!-- Start the page's show data form -->
-        <section class="main">
-        <h2>Current Data</h2>
-        <table id="list">
-            <thead>
-                <tr>
-                    <th>Reservation ID</th>
-                    <!-- Complete the remaining header --> 
-                    <th>Email</th>
-                    <th>Amount</th>
-                    <th>Ticket Class</th>
-                    <th>Cost</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-            </thead>
-            <?php
-                $i=0;
-                foreach($reservations as $reservation)  {
-                    if ($i % 2 == 0) {
-                        echo "<tbody class='evenRow'>";
-                    } else {
-                        echo "<tbody>";
-                    }
-                    $totalCost = $reservation->TicketCost * $reservation->getAmount();
-                    echo "<tr>";
-                    echo "<td>{$reservation->getReservationID()}</td>";
-                    echo "<td>{$reservation->getEmail()}</td>";
-                    echo "<td>{$reservation->getAmount()}</td>";
-                    echo "<td>{$reservation->TicketDetail}</td>";
-                    echo "<td>\${$totalCost}</td>";
-                    echo "<td><a href={$_SERVER['PHP_SELF']}?action=edit&id={$reservation->getReservationID()}>Edit</td>";
-                    echo "<td><a href={$_SERVER['PHP_SELF']}?action=delete&id={$reservation->getReservationID()}>Delete</td>";
-                    echo "</tr>";
-                    echo "</tbody>";
-                    $i++;
-                } 
-        
-        echo '</table>
-            </section>';
-  
+    <div>
+        <table>
+            <tr class="table-header">
+                <th>Position Name</th>
+                <th>Comapny Name</th>
+                <th>Status</th>
+                <th>Date Submitted</th>
+                <th>Job Type</th>
+                <th>Job Description</th>
+                <th>Note</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr class="odd-row">
+                <td>Jr. Software Developer</td>
+                <td>Microsoft</td>
+                <td>Tech interview</td>
+                <td>6 June, 2023</td>
+                <td>Internship</td>
+                <td>Develop Microsoft365</td>
+                <td>Full-time Internship with paid</td>
+                <td><a href="">Edit</a></td>
+                <td><a href="">Delete</a></td>
+            </tr>
+            <tr class="even-row">
+                <td>Jr. Software Developer</td>
+                <td>Microsoft</td>
+                <td>Tech interview</td>
+                <td>6 June, 2023</td>
+                <td>Internship</td>
+                <td>Develop Microsoft365</td>
+                <td>Full-time Internship with paid</td>
+                <td><a href="">Edit</a></td>
+                <td><a href="">Delete</a></td>
+            </tr>
+        </table>
+        </div>
+        <?php
     }
 
     // this function displays the add new reservation record
     // $rooms is the array of rooms objects obtained from the RoomsTypeDAO
     // $rooms is required to display the rooms option
-    static function createReservationForm(Array $ticketClass)   { ?>        
-        <!-- Start the page's add entry form -->
-        <section class="form1">
-                <h3>Add a New Reservation</h3>
-                <!-- make sure to edit the form action -->
-                <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
-                    <table>
-                        <tr>
-                            <td>Reservation ID</td>
-                            <td><input type="text" name="reservationID" id="reservationID" placeholder="R{X|Y}XXX"></td>
-                        </tr>
-                        <tr>
-                            <td>Email</td>
-                            <td><input type="email" name="email" id="email" placeholder="someone@here.com"></td>
-                        </tr>
-                        <tr>
-                            <td>Amount</td>
-                            <td><input type="text" name="amount" id="amount" placeholder="1 to 5"></td>
-                        </tr>                                                
-                        <tr>
-                            <td>Ticket Class</td>
-                            <td>
-                            <select name="ticketClassID">
-                            <?php
-                                // use loop to list all TicketDetail here
-                                // from the database to display the html's option elements
-                                foreach($ticketClass as $class) {
-                                    echo "<option value='{$class->getID()}'>{$class->getTicketDetail()}</option>";
-                                }
-                            ?>
-                            </select>
-                            </td>
-                        </tr>
-                    </table>
-                    <!-- Use input type hidden to let us know that this action is to create record -->
-                    <input type="hidden" name="action" value="create">
-                    <input type="submit" value="Add Reservation">
-                </form>
-            </section>
-
+    static function createJobPositionForm()   { ?>        
+       <div class="new-entry-form">
+            <form action="" method="post">
+                <div class="entry-row">
+                    <div class="entry-col">
+                        <label for="position-name"></label>
+                        <input type="text" name="position-name" placeholder="Position Name">
+                    </div>
+                    <div class="entry-col">
+                        <label for="company-phone"></label>
+                        <input type="text" name="job-type" placeholder="Job Type">
+                    </div>
+                </div>
+                <div class="entry-row">
+                    <div class="entry-col">
+                        <label for="date-posted"></label>
+                        <input type="text" name="date-posted" placeholder="Date Posted">
+                    </div>
+                    <div class="entry-col">
+                        <label for="company-phone"></label>
+                        <input type="text" name="job-description" placeholder="Job Description">
+                    </div>
+                </div>
+                <div class="entry-row">
+                    <div class="entry-col">
+                        <label for="company-url"></label>
+                        <input type="text" name="note" placeholder="Note">
+                    </div>
+                </div>
+            </form>
+        </div>
     <?php }
 
     // This function is to show the edit reservation record form
@@ -176,5 +165,24 @@ class Page  {
         </section>
 
 <?php }
+		static function showLoginForm() {
+			?>
+            <div class="login-container">
+                <form action="" method="POST">
+                    <div class="signin-row">
+                        <label for="username"><input name="username" type="text" placeholder="user name"></label>
+                    </div>
+                    <div class="signin-row">
+                        <label for="password"><input name="password" type="password" placeholder="password"></label>
+                    </div>
+                    <button class="btn-login" type="submit">Login</button>
+                </form>
+                <form action="">
+                    <button class="btn-signup" type="Submit">Sign Up</button>
+                </form>
+            </div>
+            <?php
+		}
+
 
 }

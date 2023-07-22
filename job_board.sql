@@ -3,7 +3,7 @@ CREATE DATABASE job_board;
 USE job_board;
 
 CREATE TABLE users (
-	userId VARCHAR(50) NOT NULL PRIMARY KEY,
+	userName VARCHAR(50) NOT NULL PRIMARY KEY,
 	first_name VARCHAR(20),	
 	last_name VARCHAR(20),
     isAdmin BOOLEAN DEFAULT FALSE,
@@ -19,12 +19,12 @@ CREATE TABLE positions (
 );
 
 CREATE TABLE applications (
-    userId VARCHAR(50),
+    userName VARCHAR(50),
     positionId INT,
     submitDate DATE,
     status VARCHAR(10),
     note VARCHAR(200),
-    FOREIGN KEY (userId) REFERENCES users (userId)
+    FOREIGN KEY (userName) REFERENCES users (userName)
         ON DELETE CASCADE,
     FOREIGN KEY (positionId) REFERENCES positions (positionId)
 );

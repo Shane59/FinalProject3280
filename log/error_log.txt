@@ -1,0 +1,73 @@
+[18-Jul-2023 05:32:52 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Page::createApplicationForm(), 0 passed in /Users/saoi/Downloads/FinalProject_SAo69796/FinalProject_SAo69796.php on line 33 and exactly 1 expected in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Entity/Page.class.php:86
+Stack trace:
+#0 /Users/saoi/Downloads/FinalProject_SAo69796/FinalProject_SAo69796.php(33): Page::createApplicationForm()
+#1 {main}
+  thrown in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Entity/Page.class.php on line 86
+[22-Jul-2023 06:25:11 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php:51
+Stack trace:
+#0 /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/UserDAO.class.php(12): PDOService->query('SELECT * FROM u...')
+#1 /Users/saoi/Downloads/FinalProject_SAo69796/Login.php(13): UserDAO::getUser('admin')
+#2 {main}
+  thrown in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php on line 51
+[22-Jul-2023 06:26:44 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php:51
+Stack trace:
+#0 /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/UserDAO.class.php(12): PDOService->query('SELECT * FROM u...')
+#1 /Users/saoi/Downloads/FinalProject_SAo69796/Login.php(13): UserDAO::getUser('admin')
+#2 {main}
+  thrown in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php on line 51
+[22-Jul-2023 06:26:48 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php:51
+Stack trace:
+#0 /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/UserDAO.class.php(12): PDOService->query('SELECT * FROM u...')
+#1 /Users/saoi/Downloads/FinalProject_SAo69796/Login.php(13): UserDAO::getUser('admin')
+#2 {main}
+  thrown in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php on line 51
+[22-Jul-2023 06:27:07 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php:51
+Stack trace:
+#0 /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/UserDAO.class.php(12): PDOService->query('SELECT * FROM u...')
+#1 /Users/saoi/Downloads/FinalProject_SAo69796/Login.php(13): UserDAO::getUser('admin')
+#2 {main}
+  thrown in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php on line 51
+[22-Jul-2023 06:28:45 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php:51
+Stack trace:
+#0 /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/UserDAO.class.php(12): PDOService->query('SELECT * FROM u...')
+#1 /Users/saoi/Downloads/FinalProject_SAo69796/Login.php(15): UserDAO::getUser('admin')
+#2 {main}
+  thrown in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php on line 51
+[22-Jul-2023 06:29:22 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php:51
+Stack trace:
+#0 /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/UserDAO.class.php(12): PDOService->query('SELECT * FROM u...')
+#1 /Users/saoi/Downloads/FinalProject_SAo69796/Login.php(15): UserDAO::getUser('admin')
+#2 {main}
+  thrown in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php on line 51
+[22-Jul-2023 06:29:27 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php:51
+Stack trace:
+#0 /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/UserDAO.class.php(12): PDOService->query('SELECT * FROM u...')
+#1 /Users/saoi/Downloads/FinalProject_SAo69796/Login.php(15): UserDAO::getUser('admin')
+#2 {main}
+  thrown in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php on line 51
+[22-Jul-2023 06:33:08 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php:51
+Stack trace:
+#0 /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/UserDAO.class.php(12): PDOService->query('SELECT * FROM u...')
+#1 /Users/saoi/Downloads/FinalProject_SAo69796/Login.php(15): UserDAO::getUser('admin')
+#2 {main}
+  thrown in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php on line 51
+[22-Jul-2023 15:26:56 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php:51
+Stack trace:
+#0 /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/UserDAO.class.php(12): PDOService->query('SELECT * FROM u...')
+#1 /Users/saoi/Downloads/FinalProject_SAo69796/Login.php(15): UserDAO::getUser('admin')
+#2 {main}
+  thrown in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php on line 51
+[22-Jul-2023 15:28:24 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php:85
+Stack trace:
+#0 /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php(85): PDOStatement->execute()
+#1 /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/UserDAO.class.php(14): PDOService->execute()
+#2 /Users/saoi/Downloads/FinalProject_SAo69796/Login.php(15): UserDAO::getUser('admin')
+#3 {main}
+  thrown in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php on line 85
+[22-Jul-2023 15:29:58 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[3D000]: Invalid catalog name: 1046 No database selected in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php:85
+Stack trace:
+#0 /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php(85): PDOStatement->execute()
+#1 /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/UserDAO.class.php(14): PDOService->execute()
+#2 /Users/saoi/Downloads/FinalProject_SAo69796/Login.php(15): UserDAO::getUser('admin')
+#3 {main}
+  thrown in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php on line 85

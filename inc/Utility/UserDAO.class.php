@@ -14,6 +14,18 @@ class UserDAO {
         self::$db->execute();
         return self::$db->singleResult();
     }
+
+    static function createuser($newUser) {
+        $insert = "INSERT INTO users VALUES(:username, :first_name, :last_name, false, :password)";
+        self::$db->query($insert);
+        self::$db->bind(":username", $newUser->getUserName());
+        self::$db->bind(":first_name", $newUser->getFirstName());
+        self::$db->bind(":last_name", $newUser->getLastName());
+        self::$db->bind(":password", password_hash($newUser->getPassword(), PASSWORD_DEFAULT));
+        self::$db->execute();
+
+        return self::$db->lastInsertedId();
+    }
 }
 
 ?>

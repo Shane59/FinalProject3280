@@ -25,7 +25,13 @@ class Page  {
                         <li><a href="">Applications</a></li>
                         <li><a href="">Companies</a></li>
                     </ul>
-                    <div><a href="Login.php">sign in</a></div>
+                    <?php
+                        if (isset($_SESSION['username'])) {
+                            echo "<div><a href=\"Logout.php\">logout</a></div>";
+                        } else {
+                            echo "<div><a href=\"Login.php\">sign in!</a></div>";
+                        }
+                    ?>
                 </header>
     <?php }
 
@@ -176,9 +182,30 @@ class Page  {
                         <label for="password"><input name="password" type="password" placeholder="password"></label>
                     </div>
                     <button class="btn-login" type="submit">Login</button>
+                    <a href="Signup.php"><button class="btn-signup" type="button">Sign Up</button></a>
                 </form>
-                <form action="">
-                    <button class="btn-signup" type="Submit">Sign Up</button>
+            </div>
+            <?php
+		}
+
+        static function showSignupForm() {
+			?>
+            <div class="login-container">
+                <form action="" method="POST">
+                    <div class="signin-row">
+                        <label for="username"><input name="username" type="text" placeholder="user name"></label>
+                    </div>
+                    <div class="signin-row">
+                        <label for="password"><input name="password" placeholder="password"></label>
+                    </div>
+                    <div class="signin-row">
+                        <label for="firstname"><input name="firstname" placeholder="first name"></label>
+                    </div>
+                    <div class="signin-row">
+                        <label for="lastname"><input name="lastname" placeholder="last name"></label>
+                    </div>
+                    <button class="btn-login" type="submit">Signup</button>
+                    <input type="hidden" name="action" value="signup">
                 </form>
             </div>
             <?php

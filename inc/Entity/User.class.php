@@ -13,7 +13,7 @@ class User {
     function getFirstName() {
         return $this->first_name;
     }
-    function getLAstName() {
+    function getLastName() {
         return $this->last_name;
     }
     function getIsAdmin() {
@@ -24,6 +24,22 @@ class User {
     }
     function verifyPassWord(string $pass) {
         return password_verify($pass, $this->getPassword());
+    }
+
+    function setUserName($username) {
+        $this->userName = $username;
+    }
+    function setFirstName($firstname) {
+        $this->first_name = $firstname;
+    }
+    function setLastName($lastname) {
+        $this->last_name = $lastname;
+    }
+    function setAdmin($isAdmin) {
+        $this->isAdmin = $isAdmin;
+    }
+    function setPassword($password) {
+        $this->password = $password;
     }
 }
 

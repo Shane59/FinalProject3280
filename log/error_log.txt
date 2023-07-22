@@ -71,3 +71,30 @@ Stack trace:
 #2 /Users/saoi/Downloads/FinalProject_SAo69796/Login.php(15): UserDAO::getUser('admin')
 #3 {main}
   thrown in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php on line 85
+[22-Jul-2023 16:31:57 UTC] PHP Warning:  Undefined global variable $_SESSION in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Entity/Page.class.php on line 29
+[22-Jul-2023 16:31:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Entity/Page.class.php on line 29
+[22-Jul-2023 16:39:00 UTC] PHP Warning:  Undefined array key "username" in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Entity/Page.class.php on line 29
+[22-Jul-2023 16:39:05 UTC] PHP Warning:  Undefined global variable $_SESSION in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Entity/Page.class.php on line 29
+[22-Jul-2023 16:39:05 UTC] PHP Warning:  Trying to access array offset on value of type null in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Entity/Page.class.php on line 29
+[22-Jul-2023 16:40:30 UTC] PHP Warning:  Undefined global variable $_SESSION in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Entity/Page.class.php on line 29
+[22-Jul-2023 16:40:30 UTC] PHP Warning:  Trying to access array offset on value of type null in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Entity/Page.class.php on line 29
+[22-Jul-2023 16:40:40 UTC] PHP Warning:  Undefined array key "username" in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Entity/Page.class.php on line 29
+[22-Jul-2023 16:40:42 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method User::getUser() in /Users/saoi/Downloads/FinalProject_SAo69796/Login.php:17
+Stack trace:
+#0 {main}
+  thrown in /Users/saoi/Downloads/FinalProject_SAo69796/Login.php on line 17
+[22-Jul-2023 16:53:52 UTC] PHP Warning:  Undefined array key "signup" in /Users/saoi/Downloads/FinalProject_SAo69796/Login.php on line 12
+[22-Jul-2023 16:53:54 UTC] PHP Warning:  Undefined array key "signup" in /Users/saoi/Downloads/FinalProject_SAo69796/Login.php on line 12
+[22-Jul-2023 16:57:55 UTC] PHP Warning:  Undefined array key "signup" in /Users/saoi/Downloads/FinalProject_SAo69796/Login.php on line 12
+[22-Jul-2023 16:57:57 UTC] PHP Warning:  Undefined array key "signup" in /Users/saoi/Downloads/FinalProject_SAo69796/Login.php on line 12
+[22-Jul-2023 16:58:16 UTC] PHP Warning:  Undefined array key "signup" in /Users/saoi/Downloads/FinalProject_SAo69796/Login.php on line 12
+[22-Jul-2023 16:58:22 UTC] PHP Warning:  Undefined array key "signup" in /Users/saoi/Downloads/FinalProject_SAo69796/Login.php on line 12
+[22-Jul-2023 17:03:46 UTC] PHP Warning:  Undefined array key "signup" in /Users/saoi/Downloads/FinalProject_SAo69796/Login.php on line 12
+[22-Jul-2023 17:30:39 UTC] PHP Parse error:  syntax error, unexpected token "=" in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/UserDAO.class.php on line 21
+[22-Jul-2023 17:43:40 UTC] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'job_board.user' doesn't exist
+[22-Jul-2023 17:43:54 UTC] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'job_board.user' doesn't exist
+[22-Jul-2023 17:44:55 UTC] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'job_board.user' doesn't exist
+[22-Jul-2023 23:16:22 UTC] PHP Warning:  Undefined array key "signup" in /Users/saoi/Downloads/FinalProject_SAo69796/Login.php on line 12
+[22-Jul-2023 23:16:34 UTC] PHP Warning:  Undefined array key "signup" in /Users/saoi/Downloads/FinalProject_SAo69796/Login.php on line 12
+[22-Jul-2023 23:16:42 UTC] PHP Warning:  Undefined array key "signup" in /Users/saoi/Downloads/FinalProject_SAo69796/Login.php on line 12
+[22-Jul-2023 23:16:52 UTC] PHP Warning:  Undefined array key "action" in /Users/saoi/Downloads/FinalProject_SAo69796/Signup.php on line 12

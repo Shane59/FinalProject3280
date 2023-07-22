@@ -28,6 +28,7 @@ require_once('inc/Utility/PDOService.class.php');
 
 // $ticketClass = TicketClassDAO::getTicketClass();
 // $reservations = ReservationDAO::getReservationList();
+session_start();
 
 Page::header();
 Page::createJobPositionForm();

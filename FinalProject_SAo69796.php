@@ -20,7 +20,6 @@ if (!isset($_SESSION['username'])) {
 $positions = PositionDAO::getPositions();
 
 if (!empty($_POST) && $_POST['action'] == 'search') {
-  echo "<h1>search was invoked</h1>";
   $positions = PositionDAO::getPositionsBySearchValues($_POST['position-name'], $_POST['job-type']);
 }
 
@@ -41,7 +40,9 @@ if (isset($_SESSION['admin']) && $_SESSION['admin']) {
     $newPosition->setDatePosted(date('Y-m-d'));
     $newPosition->setJobDescription($_POST['job-description']);
     if (isset($_POST['action']) && $_POST['action'] == 'create') {
-      PositionDAO::createPosition($newPosition);
+      if ($newPosition->getPositionName() != "") {
+        PositionDAO::createPosition($newPosition);
+      }
     } else {
       $newPosition->setPositionId($_GET['id']);
       PositionDAO::updatePosition($newPosition);
@@ -69,7 +70,6 @@ if (isset($_SESSION['admin']) && $_SESSION['admin']) {
     Page::footer();
     exit;
   }
-  echo "<h1>yay</h1>";
   if (!empty($_GET['action']) && $_POST['action'] == 'apply') {
     $newApplication = new Application();
     $newApplication->setUserName($_SESSION['username']);

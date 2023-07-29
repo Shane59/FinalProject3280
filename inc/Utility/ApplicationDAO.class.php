@@ -43,9 +43,13 @@ class ApplicationDAO {
     $positionNameWhere = " AND positionName LIKE :positionName";
     $jobTypeWhere = " AND jobType LIKE :jobType";
     $select = "SELECT a.submitDate, a.status, a.note, a.positionId, ";
-    $select .= "p.positionName, p.jobType, p.jobDescription ";
-    $select .= "FROM applications a, positions p ";
-    $select .= "WHERE a.positionId = p.positionId AND a.username = :username";
+    $select .= "p.positionName, p.jobType, p.jobDescription, u.userName, u.first_name, u.last_name ";
+    $select .= "FROM applications a, positions p, users u ";
+    if ($username == "admin") {
+      $select .= "WHERE a.positionId = p.positionId AND a.username = u.username";  
+    } else {
+      $select .= "WHERE a.positionId = p.positionId AND a.username = :username";
+    }
 
     if ($positionName != "" && $jobType != "") {
       $select .= $positionNameWhere;
@@ -53,22 +57,20 @@ class ApplicationDAO {
       self::$db->query($select);
       self::$db->bind(":positionName", "%" . $positionName . "%");
       self::$db->bind(":jobType", "%" .$jobType . "%");
-      self::$db->bind(":username", $username);
     } else if ($jobType != "" && $positionName == "") {
         $select .= $jobTypeWhere;
         self::$db->query($select);
         self::$db->bind(":jobType", "%" . $jobType . "%");
-        self::$db->bind(":username", $username);
     } else if ($positionName != "" && $jobType == "") {
         $select .= $positionNameWhere;
-        echo "<p>" . $positionName . "</p>";
         self::$db->query($select);
         self::$db->bind(":positionName", '%' . $positionName . '%');
-        self::$db->bind(":username", $username);
+    }
+    if ($username != "admin") {
+      self::$db->bind(":username", $username);
     }
     if ($positionName == "" && $jobType == "") {
-      self::getApplications($username);
-      exit;
+      return self::getApplications($username);
     }
     self::$db->execute();
     return self::$db->resultSet();

@@ -38,13 +38,11 @@ class PositionDAO {
             self::$db->bind(":jobType", "%" . $jobType . "%");
         } else if ($positionName != "" && $jobType == "") {
             $select .= $positionNameWhere;
-            echo "<p>" . $positionName . "</p>";
             self::$db->query($select);
             self::$db->bind(":positionName", '%' . $positionName . '%');
         }
-        if ($positionName == "" && $jobType == "") {
-            self::getPositions();
-            exit;
+        if ($positionName == "" && $jobType == "") {            
+            return self::getPositions();
         }
 
         

@@ -29,8 +29,8 @@ class PDOService {
         $this->_className = $className;
 
         //Assemble the DSN (Data Source Name)
-        $dsn = "mysql:host={$this->_host};dbname={$this->_dbname};dbport={$this->_dbport}"; // <------ FILL ME 
-        echo $dsn;
+        $dsn = "mysql:host={$this->_host};dbname={$this->_dbname};dbport={$this->_dbport}"; 
+        
         //Set the options for PDO
         $options = array (
             PDO::ATTR_PERSISTENT => true,

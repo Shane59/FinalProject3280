@@ -1,180 +1,433 @@
 <?php
 
-# Make sure to :
-# 1. Edit the studentName and studentID
-# 2. Edit the page's meta author and title
-# 3. Edit the page's main heading to use the static member
-# 4. Complete the listReservations(), addReservationForm() and editReservationForm()
-
 class Page  {
 
-    public static $studentName = "Shinya Aoi";
-    public static $studentID = "300369796";
+  public static $studentName = "Shinya Aoi";
+  public static $studentID = "300369796";
 
-    static function header()   { ?>
-        <!-- Start the page 'header' -->
-        <!DOCTYPE html>
-        <html>
-            <head>
-                <title></title>
-                <meta charset="utf-8">
-                <meta name="author" content="">
-                <title>Resrevation Form</title>   
-                <link href="css/stylesA.css" rel="stylesheet">     
-            </head>
-            <body>
-                <header>
-                <h1>Assignment 03: PDO CRUD with DAO -- <?= self::$studentName ?> (<?= self::$studentID ?>)</h1>
-                </header>
-                <article>
-    <?php }
-
-    static function footer()   { ?>
-        <!-- Start the page's footer -->            
-                </article>
-            </body>
-        </html>
-    <?php }
-
-    // This function lists all reservation records
-    // The $reservations is the array of Reservation object obtained from the ReservationDAO from the controller
-    static function listReservations(Array $reservations)    {
-    ?>
-        <!-- Start the page's show data form -->
-        <section class="main">
-        <h2>Current Data</h2>
-        <table id="list">
-            <thead>
-                <tr>
-                    <th>Reservation ID</th>
-                    <!-- Complete the remaining header --> 
-                    <th>Email</th>
-                    <th>Amount</th>
-                    <th>Ticket Class</th>
-                    <th>Cost</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-            </thead>
+  static function header() { ?>
+    <!-- Start the page 'header' -->
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="/css/styles.css">
+      <title>Document</title>
+    </head>
+    <body>
+      <div class="main-container">
+        <header>
+          <div><img src="fakelogo.png" class="logo" alt="logo"></div>
+          <ul>
             <?php
-                $i=0;
-                foreach($reservations as $reservation)  {
-                    if ($i % 2 == 0) {
-                        echo "<tbody class='evenRow'>";
-                    } else {
-                        echo "<tbody>";
-                    }
-                    $totalCost = $reservation->TicketCost * $reservation->getAmount();
-                    echo "<tr>";
-                    echo "<td>{$reservation->getReservationID()}</td>";
-                    echo "<td>{$reservation->getEmail()}</td>";
-                    echo "<td>{$reservation->getAmount()}</td>";
-                    echo "<td>{$reservation->TicketDetail}</td>";
-                    echo "<td>\${$totalCost}</td>";
-                    echo "<td><a href={$_SERVER['PHP_SELF']}?action=edit&id={$reservation->getReservationID()}>Edit</td>";
-                    echo "<td><a href={$_SERVER['PHP_SELF']}?action=delete&id={$reservation->getReservationID()}>Delete</td>";
-                    echo "</tr>";
-                    echo "</tbody>";
-                    $i++;
-                } 
-        
-        echo '</table>
-            </section>';
+            $uri_components = explode("/", $_SERVER['REQUEST_URI']);
+            $page = $uri_components[sizeof($uri_components) - 1];
+
+            if ($page == "FinalProject_SAo69796.php") {
+              echo "<li><a class=\"active\" href=\"/FinalProject_SAo69796.php\">HOME</a></li>";
+            } else {
+              echo "<li><a href=\"/FinalProject_SAo69796.php\">HOME</a></li>";
+            }
+            ?>
+            <?php
+            if ($page == "Applications.php") {
+              echo "<li><a class=\"active\" href=\"Applications.php\">Applications</a></li>";
+            } else {
+              echo "<li><a href=\"Applications.php\">Applications</a></li>";
+            }
+            ?>
+            <?php
+              if (isset($_SESSION['username'])) {
+                echo "<li><a href=Logout.php>logout</a></li>";
+              } else {
+                echo "<li><a href=Login.php>sign in!</a></li>";
+              }
+            ?>
+          </ul>
+        </header>
+  <?php }
+
+  static function footer()   { ?>
+    <!-- Start the page's footer -->            
+          </div>
+      </body>
+    </html>
+  <?php }
+
+  // this list is for admins only
+  static function showPositions($positions) {
+  ?>
+  <div>
+    <table>
+      <tr class="table-header">
+        <th>Position Name</th>
+        <th>Date Posted</th>
+        <th>Job Type</th>
+        <th>Job Description</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        </tr>
+          <?php
+            $count = 1;
+            foreach($positions as $position) {
+              if ($count % 2 != 0) {
+                echo "<tr class=\"odd-row\">";
+              } else {
+                echo "<tr class=\"even-row\">";
+              }
+              echo "<td>{$position->getPositionName()}</td>";
+              echo "<td>{$position->getDatePosted()}</td>";
+              echo "<td>{$position->getJobType()}</td>";
+              echo "<td>{$position->getJobDescription()}</td>";
+              echo "<td><a href={$_SERVER['PHP_SELF']}?action=edit&id={$position->getPositionId()}>Edit</a></td>";
+              echo "<td><a href={$_SERVER['PHP_SELF']}?action=delete&id={$position->getPositionId()}>Delete</a></td>";
+              echo "</tr>";
+              $count++;
+            }
+          ?>
+        </table>
+      </div>
+    <?php
+  }
   
+  static function createJobPositionForm()   { ?>        
+    <div class="new-entry-form">
+      <h2 class="subtitle">Add a new Job Posting!</h2>
+      <form action="" method="post">
+        <div class="entry-row">
+          <div class="entry-col">
+            <label for="position-name"></label>
+            <input type="text" name="position-name" placeholder="Position Name">
+          </div>
+          <div class="entry-col">
+            <label for="company-phone"></label>
+            <input type="text" name="job-type" placeholder="Job Type">
+          </div>
+        </div>
+        <div class="entry-row">
+          <div class="entry-col textarea-col">
+            <label for="job-desciption"></label>
+            <textarea name="job-description" cols="80" rows="10" placeholder="Job Description"></textarea>
+          </div>
+        </div>
+        <div class="btn-container">
+          <button class="btn-login" type="submit">Add</button>
+        </div>
+        <input type="hidden" name="action" value="create">
+      </form>
+    </div>
+    <?php
+  }
+
+  static function editJobPositionForm($position) {
+    ?>        
+    <div class="new-entry-form">
+      <h2 class="subtitle">Edit a Job Posting!</h2>
+         <form action="" method="post">
+             <div class="entry-row">
+                 <div class="entry-col">
+                     <label for="position-name"></label>
+                     <input type="text" name="position-name" placeholder="Position Name" value="<?= $position->getPositionName() ?>">
+                 </div>
+                 <div class="entry-col">
+                     <label for="company-phone"></label>
+                     <input type="text" name="job-type" placeholder="Job Type" value="<?= $position->getJobType() ?>">
+                 </div>
+             </div>
+             <div class="entry-row">
+                 <div class="entry-col">
+                     <label for="job-description"></label>
+                     <textarea name="job-description" cols="80" rows="10" placeholder="Job Description"><?= $position->getJobDescription() ?></textarea>
+                 </div>
+             </div>
+             <div class="btn-container">
+               <button class="btn-login" type="submit">Edit Position</button>
+               <button class="btn-signup"><a href="/FinalProject_SAo69796.php">Back</a></button>
+             </div>
+         </form>
+     </div>
+  <?php
+  }
+
+		static function showLoginForm() {
+			?>
+            <div class="login-container">
+                <form action="" method="POST">
+                    <div class="signin-row">
+                        <label for="username"><input name="username" type="text" placeholder="user name"></label>
+                    </div>
+                    <div class="signin-row">
+                        <label for="password"><input name="password" type="password" placeholder="password"></label>
+                    </div>
+                    <button class="btn-login" type="submit">Login</button>
+                    <a href="Signup.php"><button class="btn-signup" type="button">Sign Up</button></a>
+                </form>
+            </div>
+            <?php
+		}
+
+        static function showSignupForm() {
+			?>
+            <div class="login-container">
+                <form action="" method="POST">
+                    <div class="signin-row">
+                        <label for="username"><input name="username" type="text" placeholder="user name"></label>
+                    </div>
+                    <div class="signin-row">
+                        <label for="password"><input name="password" placeholder="password"></label>
+                    </div>
+                    <div class="signin-row">
+                        <label for="firstname"><input name="firstname" placeholder="first name"></label>
+                    </div>
+                    <div class="signin-row">
+                        <label for="lastname"><input name="lastname" placeholder="last name"></label>
+                    </div>
+                    <button class="btn-login" type="submit">Signup</button>
+                    <input type="hidden" name="action" value="signup">
+                </form>
+            </div>
+            <?php
+		}
+	static function showApplications($applications) {
+    ?>
+    <h2>Applications you have applied!</h2>
+    <table>
+      <p><?= sizeof($applications) ?> applications shown</p>
+      <tr class="table-header">
+        <th>Position Name</th>
+        <th>Job Type</th>
+        <th>Job Description</th>
+        <th>Status</th>
+        <th>Note</th>
+        <th>Submit Date</th>
+        <th>Edit</th>
+      </tr>
+      <?php
+        $count = 1;
+        foreach($applications as $application) {
+          if ($count % 2 != 0) {
+            echo "<tr class=\"odd-row\">";
+          } else {
+            echo "<tr class=\"even-row\">";
+          }
+          echo "<td>{$application->positionName}</td>";
+          echo "<td>{$application->jobType}</td>";
+          echo "<td>{$application->jobDescription}</td>";
+          echo "<td>{$application->getStatus()}</td>";
+          echo "<td>{$application->getNote()}</td>";
+          echo "<td>{$application->getSubmitDate()}</td>";
+          echo "<td><a href={$_SERVER['PHP_SELF']}?action=edit-application&id={$application->getPositionId()}>Edit</a></td>";
+          echo "</tr>";
+          $count++;
+        }
+      ?>
+    </table>
+    <?php
+  }
+
+  static function showApplicationsForAdmin($applications) {
+    ?>
+    <h2>Applications you have applied!</h2>
+    <table>
+      <p><?= sizeof($applications) ?> applications shown</p>
+      <tr class="table-header">
+        <th>Position Name</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Job Type</th>
+        <th>Job Description</th>
+        <th>Status</th>
+        <th>Note</th>
+        <th>Submit Date</th>
+        <th>Edit</th>
+      </tr>
+      <?php
+        $count = 1;
+        foreach($applications as $application) {
+          if ($count % 2 != 0) {
+            echo "<tr class=\"odd-row\">";
+          } else {
+            echo "<tr class=\"even-row\">";
+          }
+          echo "<td>{$application->positionName}</td>";
+          echo "<td>{$application->first_name}</td>";
+          echo "<td>{$application->last_name}</td>";
+          echo "<td>{$application->jobType}</td>";
+          echo "<td>{$application->jobDescription}</td>";
+          echo "<td>{$application->getStatus()}</td>";
+          echo "<td>{$application->getNote()}</td>";
+          echo "<td>{$application->getSubmitDate()}</td>";
+          echo "<td><a href={$_SERVER['PHP_SELF']}?action=edit-application&id={$application->getPositionId()}&userapplied={$application->getUserName()}>Edit</a></td>";
+          echo "</tr>";
+          $count++;
+        }
+      ?>
+    </table>
+    <?php
+  }
+
+  static function searchForm() {
+    ?>
+    <form action="" method="post">
+      <div class="entry-row">
+        <div class="entry-col">
+          <label for="position-name"></label>
+          <input type="text" name="position-name" placeholder="Position Name">
+        </div>
+      </div>
+      <div class="entry-row">
+        <div class="entry-col">
+          <label for="job-type"></label>
+          <input type="text" name="job-type" placeholder="Job Type">
+        </div>
+      </div>
+      <button type="submit" class="btn-search">Search</button>
+      <input type="hidden" name="action" value="search">
+    </form>
+    <?php
+  }
+
+  static function showAllPositionsForUsers($positions) {
+    ?>
+    <div>
+      <table>
+        <p><?= sizeof($positions) ?> positions available:</p>
+        <tr class="table-header">
+          <th>Position Name</th>
+          <th>Date Posted</th>
+          <th>Job Type</th>
+          <th>Job Description</th>
+          <th>Apply</th>
+          </tr>
+            <?php
+              $count = 1;
+              foreach($positions as $position) {
+                if ($count % 2 != 0) {
+                    echo "<tr class=\"odd-row\">";
+                } else {
+                  echo "<tr class=\"even-row\">";
+                }
+                echo "<td>{$position->getPositionName()}</td>";
+                echo "<td>{$position->getDatePosted()}</td>";
+                echo "<td>{$position->getJobType()}</td>";
+                echo "<td>{$position->getJobDescription()}</td>";
+                echo "<td><a href={$_SERVER['PHP_SELF']}?action=apply-ready&id={$position->getPositionId()}>Apply</a></td>";
+                echo "</tr>";
+                $count++;
+              }
+            ?>
+          </table>
+        </div>
+      <?php
     }
 
-    // this function displays the add new reservation record
-    // $rooms is the array of rooms objects obtained from the RoomsTypeDAO
-    // $rooms is required to display the rooms option
-    static function createReservationForm(Array $ticketClass)   { ?>        
-        <!-- Start the page's add entry form -->
-        <section class="form1">
-                <h3>Add a New Reservation</h3>
-                <!-- make sure to edit the form action -->
-                <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
-                    <table>
-                        <tr>
-                            <td>Reservation ID</td>
-                            <td><input type="text" name="reservationID" id="reservationID" placeholder="R{X|Y}XXX"></td>
-                        </tr>
-                        <tr>
-                            <td>Email</td>
-                            <td><input type="email" name="email" id="email" placeholder="someone@here.com"></td>
-                        </tr>
-                        <tr>
-                            <td>Amount</td>
-                            <td><input type="text" name="amount" id="amount" placeholder="1 to 5"></td>
-                        </tr>                                                
-                        <tr>
-                            <td>Ticket Class</td>
-                            <td>
-                            <select name="ticketClassID">
-                            <?php
-                                // use loop to list all TicketDetail here
-                                // from the database to display the html's option elements
-                                foreach($ticketClass as $class) {
-                                    echo "<option value='{$class->getID()}'>{$class->getTicketDetail()}</option>";
-                                }
-                            ?>
-                            </select>
-                            </td>
-                        </tr>
-                    </table>
-                    <!-- Use input type hidden to let us know that this action is to create record -->
-                    <input type="hidden" name="action" value="create">
-                    <input type="submit" value="Add Reservation">
-                </form>
-            </section>
+    static function applyForm($position) {
+      ?>        
+    <div class="new-entry-form">
+      <h2 class="subtitle">Apply with some information: </h2>
+         <form action="" method="post">
+             <div class="entry-row">
+                 <div class="entry-col">
+                     <div class="apply-form-col">Position Name</div>
+                     <div class="apply-form-col-value"><?= $position->getPositionName() ?></div>
+                 </div>
+                 <div class="entry-col">
+                     <div class="apply-form-col">Job Type</div>
+                     <div class="apply-form-col-value"><?= $position->getJobType() ?></div>
+                 </div>
+             </div>
+             <div class="entry-row">
+               <div class="entry-col">
+                    <div class="apply-form-col">Job Description:</div>
+                    <div class="apply-form-col-value"><?= $position->getJobDescription() ?></div>
+                 </div>
+             </div>
+             <div class="entry-row">
+                 <div class="entry-col">
+                     <label for="application-note"></label>
+                     <textarea name="application-note" cols="80" rows="10" placeholder="note"></textarea>
+                 </div>
+             </div>
+             <div class="btn-container">
+               <button class="btn-login" type="submit">Apply Position</button>
+               <input type="hidden" name="action" value="apply">
+             </div>
+         </form>
+     </div>
+    <?php
+    }
 
-    <?php }
+    static function editApplyForm($application) {
+      ?>        
+    <div class="new-entry-form">
+      <h2 class="subtitle">Edit your application: </h2>
+         <form action="" method="post">
+             <div class="entry-row">
+                 <div class="entry-col">
+                     <div class="apply-form-col">Position Name</div>
+                     <div class="apply-form-col-value"><?= $application->positionName ?></div>
+                 </div>
+                 <div class="entry-col">
+                     <div class="apply-form-col">Job Type</div>
+                     <div class="apply-form-col-value"><?= $application->jobType ?></div>
+                 </div>
+             </div>
+             <div class="entry-row">
+               <div class="entry-col">
+                    <div class="apply-form-col">Job Description:</div>
+                    <div class="apply-form-col-value"><?= $application->jobDescription ?></div>
+                 </div>
+             </div>
+             <div class="entry-row">
+                 <div class="entry-col">
+                     <label for="application-note"></label>
+                     <textarea name="application-note" cols="80" rows="10" placeholder="note"><?= $application->getNote() ?></textarea>
+                 </div>
+             </div>
+             <div class="btn-container">
+               <input class="btn-login" type="submit">Apply Position</button>
+               <input type="hidden" name="action" value="edit-confirm">
+             </div>
+         </form>
+     </div>
+    <?php
+    }
 
-    // This function is to show the edit reservation record form
-    // The edit form should be displayed only when the Edit link is clicked
-    // Whether you will display add form or edit form should be controlled in the main file.
-
-    // The $reservationToEdit is a singleResult record of reservation whose link was clicked
-    // The $ticketClass contains the array of ticket objects from the TicketClassDAO
-    static function editReservationForm(Reservation $reservationToEdit, Array $ticketClass)   {  
-        ?>        
-        <!-- Start the page's edit entry form -->
-        <section class="form1">
-            <h3>Edit Reservation - <?php // I should echo something here ?></h3>
-            <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
-                <table>
-                    <tr>
-                        <td>Reservation ID</td>
-                        <td><?= $reservationToEdit->getReservationID() ?></td>
-                    </tr>
-                    <tr>
-                        <td>Email</td>
-                        <td><input type="email" name="email" id="email" value="<?= $reservationToEdit->getEmail() ?>"></td>
-                    </tr>
-                    <tr>
-                        <td>Amount</td>
-                        <td><input type="text" name="amount" id="amount" value="<?= $reservationToEdit->getAmount() ?>"></td>
-                    </tr>                
-                    <tr>
-                        <td>Ticket Class</td>
-                        <td>
-                        <select name="ticketClassID">
-                        <?php
-                                foreach($ticketClass as $class) {
-                                    if ($reservationToEdit->getTicketClassID() == $class->getID()) {
-                                        echo "<option selected value='{$class->getID()}'>{$class->getTicketDetail()}</option>";
-                                    } else {
-                                        echo "<option value='{$class->getID()}'>{$class->getTicketDetail()}</option>";
-                                    }
-                                }
-                            ?>
-                        </select>
-                        </td>
-                    </tr>
-                </table>              
-                <input type="hidden" name="reservationID" value="<?= $reservationToEdit->getReservationID(); ?>">
-                <input type="hidden" name="action" value="edit">
-                <input type="submit" value="Edit Reservation">                
-            </form>
-        </section>
-
-<?php }
-
+    static function editApplyFormForAdmin($application) {
+      ?>        
+    <div class="new-entry-form">
+      <h2 class="subtitle">Edit your application: </h2>
+         <form action="" method="post">
+             <div class="entry-row">
+                 <div class="entry-col">
+                     <div class="apply-form-col">Position Name</div>
+                     <div class="apply-form-col-value"><?= $application->positionName ?></div>
+                 </div>
+                 <div class="entry-col">
+                     <div class="apply-form-col">Job Type</div>
+                     <div class="apply-form-col-value"><?= $application->jobType ?></div>
+                 </div>
+             </div>
+             <div class="entry-row">
+               <div class="entry-col">
+                    <div class="apply-form-col">Job Description:</div>
+                    <div class="apply-form-col-value"><?= $application->jobDescription ?></div>
+                 </div>
+             </div>
+             <div class="entry-row">
+                 <div class="entry-col">
+                     <label for="status"></label>
+                     <input type="text" name="status" value="<?= $application->getStatus() ?>">
+                 </div>
+             </div>
+             <div class="btn-container">
+               <button class="btn-login" type="submit">Apply Position</button>
+               <input type="hidden" name="action" value="edit-confirm">
+             </div>
+         </form>
+     </div>
+    <?php
+    }
 }

@@ -100,10 +100,13 @@ class Page  {
           <div class="entry-col">
             <label for="position-name"></label>
             <input type="text" name="position-name" placeholder="Position Name">
-          </div>
-          <div class="entry-col">
-            <label for="company-phone"></label>
-            <input type="text" name="job-type" placeholder="Job Type">
+            <select name="job-type" id="">
+              <option value="">choose job type</option>
+              <option value="full-time">full-time</option>
+              <option value="part-time">part-time</option>
+              <option value="internship">internship</option>
+              <option value="contract">contract</option>
+            </select>
           </div>
         </div>
         <div class="entry-row">
@@ -124,16 +127,25 @@ class Page  {
   static function editJobPositionForm($position) {
     ?>        
     <div class="new-entry-form">
-      <h2 class="subtitle">Edit a Job Posting!</h2>
+      <h2 class="subtitle">Edit a Job Posting!</h2> <?= $position->getJobType()?>
          <form action="" method="post">
              <div class="entry-row">
                  <div class="entry-col">
                      <label for="position-name"></label>
                      <input type="text" name="position-name" placeholder="Position Name" value="<?= $position->getPositionName() ?>">
-                 </div>
-                 <div class="entry-col">
-                     <label for="company-phone"></label>
-                     <input type="text" name="job-type" placeholder="Job Type" value="<?= $position->getJobType() ?>">
+                     <select name="job-type" id="">
+                       <option value="">choose job type</option>
+                        <?php
+                        $jobTypes = array("full-time", "part-time", "internship", "contract");
+                        for ($i = 0; $i < sizeof($jobTypes); $i++) {
+                          if ($position->getJobType() == $jobTypes[$i]) {
+                            echo "<option selected value=\"{$jobTypes[$i]}\">{$jobTypes[$i]}</option>";    
+                          } else {
+                            echo "<option value=\"{$jobTypes[$i]}\">{$jobTypes[$i]}</option>";  
+                          }
+                        }
+                      ?>
+                    </select>
                  </div>
              </div>
              <div class="entry-row">
@@ -280,7 +292,13 @@ class Page  {
       <div class="entry-row">
         <div class="entry-col">
           <label for="job-type"></label>
-          <input type="text" name="job-type" placeholder="Job Type">
+          <select name="job-type" id="">
+            <option value="">choose job type</option>
+            <option value="full-time">full-time</option>
+            <option value="part-time">part-time</option>
+            <option value="internship">internship</option>
+            <option value="contract">contract</option>
+          </select>
         </div>
       </div>
       <button type="submit" class="btn-search">Search</button>

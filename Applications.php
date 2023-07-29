@@ -21,12 +21,10 @@ if (LoginManager::verifyLogin()) {
   $username = $_SESSION['username'];
   if (empty($_POST) && !empty($_GET['action']) && $_GET['action'] == "edit-application") {
     if ($username == "admin") {
-      echo "<h1>edit application for admin!</h1>";
       Page::header();
       Page::editApplyFormForAdmin(ApplicationDAO::getApplicationByPositionIdAndUserName($_GET['id'], $_GET['userapplied']));
       Page::footer();
     } else {
-      echo "<h1>edit application</h1>";
       Page::header();
       Page::editApplyForm(ApplicationDAO::getApplication($_GET['id']));
       Page::footer();
@@ -34,7 +32,6 @@ if (LoginManager::verifyLogin()) {
     exit;
   }
   if (!empty($_POST) && $_POST['action'] == "edit-confirm") {
-    echo "<h1>" . $_POST['status'] ."</h1>";
     if ($username == "admin") {
       $application = ApplicationDAO::getApplicationByPositionIdAndUserName($_GET['id'], $_GET['userapplied']);
       $application->setStatus($_POST['status']);
@@ -48,8 +45,10 @@ if (LoginManager::verifyLogin()) {
   $applications = ApplicationDAO::getApplications($username);
   if ($username == "admin") {
     $applications = ApplicationDAO::getApplicationsForAdmin();
-  } else if (!empty($_POST) && $_POST['action'] == "search") {
-    $applications = ApplicationDAO::getApplicationsBySearchValues($username,$_POST['position-name'], $_POST['job-type']);
+  }
+  if (!empty($_POST) && $_POST['action'] == "search") {
+    $applications = ApplicationDAO::getApplicationsBySearchValues($username, $_POST['position-name'], $_POST['job-type']);
+    
   }
   Page::header();
   Page::searchForm();

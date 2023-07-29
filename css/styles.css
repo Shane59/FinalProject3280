@@ -2,6 +2,14 @@ body {
   background-color: #F2F4FF;
 }
 
+.logo {
+  width: 80px;
+}
+
+.main-container {
+  margin: 16px 32px;
+}
+
 header {
   display: flex;
   align-items: center;
@@ -11,16 +19,36 @@ header ul {
   display: flex;
   flex: 1 1 600px;
   list-style: none;
+  text-align: right;
+  margin: 0 80px 0 200px;
 }
 
 header li {
-  flex: 1 1 100px;;
+  flex: 1 1 100px;
+  padding-right: 24px;
+}
+
+header a {
+  text-decoration: none;
+  color: black;
+}
+
+.active {
+  color: #96C5F7;
 }
 
 .new-entry-form, .login-container {
   max-width: 600px;
   border-radius: 32px;
   margin: 24px auto;
+}
+
+.new-entry-form .btn-login {
+  margin: 10px 0 10px auto;
+}
+
+.new-entry-form .subtitle {
+  text-align: center;
 }
 
 .entry-row {
@@ -30,6 +58,12 @@ header li {
 .entry-row label{
   display: block;
   margin-bottom: 16px;
+}
+
+textarea {
+  box-sizing: border-box;
+  width: 100%;
+  border: solid 1px lightgray;
 }
 
 .entry-col {
@@ -44,7 +78,7 @@ header li {
 }
 
 table {
-  text-align: center;
+  width: 100%;
 }
 
 table th {
@@ -53,6 +87,7 @@ table th {
 
 table td {
   padding: 12px;;
+  white-space: pre-wrap;
 }
 
 .table-header {
@@ -101,4 +136,29 @@ table td {
 
 .btn-signup:hover {
   cursor: pointer;
+}
+
+.btn-container {
+  width: 160px;
+  margin-left: auto;
+}
+
+.apply-form-col {
+  margin-bottom: 8px;
+  font-weight: 800;
+}
+
+.apply-form-col-value {
+  white-space: pre-wrap;
+  padding: 12px;
+}
+
+.btn-search {
+  height: 39px;
+  background-color: #96C5F7;
+  border: none;
+  padding: 11px;
+  min-width: 71px;
+  margin: 24px 26px 16px auto;
+  display: block;
 }

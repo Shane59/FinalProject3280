@@ -9,13 +9,17 @@ require_once('inc/Utility/UserDAO.class.php');
 
 UserDAO::init();
 
-echo $_POST['signup'];
 if (isset($_POST['username'])) {
     //user trying to login
     $authUser = UserDAO::getUser($_POST['username']);
     if ($authUser && $authUser->verifyPassWord($_POST['password'])) {
         session_start();
         $_SESSION['username'] = $authUser->getUserName();
+        if ($authUser->getIsAdmin()) {
+            $_SESSION['admin'] = true;
+        } else {
+            $_SESSION['admin'] = false;
+        }
     }
 }
 if (LoginManager::verifyLogin()) {

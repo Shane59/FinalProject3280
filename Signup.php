@@ -9,7 +9,8 @@ require_once('inc/Utility/PDOService.class.php');
 require_once('inc/Utility/UserDAO.class.php');
 
 UserDAO::init();
-if ($_POST['action'] == "signup") {
+
+if (isset($_POST['action']) && $_POST['action'] == "signup") {
     //signup func
     $newUser = new User();
     $newUser->setUserName($_POST['username']);
@@ -18,7 +19,6 @@ if ($_POST['action'] == "signup") {
     $newUser->setAdmin(false);
     $newUser->setPassword($_POST['password']);
     try {
-        echo "<p>adding user...</p>";
         UserDAO::createuser($newUser);
         session_start();
         $_SESSION['username'] = $newUser->getUserName();

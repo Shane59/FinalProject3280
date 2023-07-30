@@ -29,6 +29,7 @@ if (LoginManager::verifyLogin()) {
     exit;
 } else {
     Page::header();
+    echo "<h2>Please signin or signup to use this service.</h2>";
     Page::showLoginForm();
     Page::footer();
 }

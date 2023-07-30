@@ -26,9 +26,9 @@ if (!empty($_POST) && $_POST['action'] == 'search') {
 if (isset($_SESSION['admin']) && $_SESSION['admin']) {
   // show admin page
   if (!empty($_GET)) {
-    if ($_GET['action'] == 'delete') {
+    if (isset($_GET['action']) && $_GET['action'] == 'delete') {
       PositionDAO::deletePosition($_GET['id']);
-      header("Location: FinalProject_SAO69796.php");
+      header("Location: FinalProject_SAO69796.php?delete=true");
     }
   }
 
@@ -42,16 +42,29 @@ if (isset($_SESSION['admin']) && $_SESSION['admin']) {
     if (isset($_POST['action']) && $_POST['action'] == 'create') {
       if ($newPosition->getPositionName() != "") {
         PositionDAO::createPosition($newPosition);
+        header("Location: FinalProject_SAo69796.php?create=true"); // avoid resend the same date when refresh the page
       }
+      header("Location: FinalProject_SAo69796.php?create=false");
     } else {
       $newPosition->setPositionId($_GET['id']);
       PositionDAO::updatePosition($newPosition);
+      header("Location: FinalProject_SAo69796.php?edit=true"); 
     }
-    header("Location: FinalProject_SAo69796.php"); // avoid resend the same date when refresh the page
   }
 
   Page::header();
-  if (!empty($_GET) && $_GET['action'] == 'edit') {
+  if (!empty($_GET['delete']) && $_GET['delete'] == 'true') {
+    echo "<h2>Positin was deleted successfully!</h2>";
+  }
+  if (!empty($_GET['edit']) && $_GET['edit'] == 'true') {
+    echo "<h2>Position was editted!</h2>";
+  }
+  if (!empty($_GET['create']) && $_GET['create'] == 'true') {
+    echo "<h2>Position was created!</h2>";
+  } else if (!empty($_GET['create']) && $_GET['create'] == 'false') {
+    echo "<h2>Something went wrong.</h2>";
+  }
+  if (!empty($_GET) && isset($_GET['action']) && $_GET['action'] == 'edit') {
     $position = PositionDAO::getPosition($_GET['id']);
     Page::editJobPositionForm($position);
   } else {
@@ -78,9 +91,12 @@ if (isset($_SESSION['admin']) && $_SESSION['admin']) {
     $newApplication->setStatus("applied");
     $newApplication->setNote($_POST['application-note']);
     ApplicationDAO::createApplication($newApplication);
-    header("Location: FinalProject_SAo69796.php");
+    header("Location: FinalProject_SAo69796.php?applied=true");
   }
   Page::header();
+  if (!empty($_GET['applied']) && $_GET['applied'] == 'true') {
+    echo "<h2>Comgratulations! We will contact you within 3 days!</h2>";
+  }
   Page::searchForm();
   Page::showAllPositionsForUsers($positions);
   Page::footer();

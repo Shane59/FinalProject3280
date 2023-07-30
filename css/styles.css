@@ -162,3 +162,7 @@ table td {
   margin: 24px 26px 16px auto;
   display: block;
 }
+
+.job-type-select {
+  margin-top: 8px;
+}

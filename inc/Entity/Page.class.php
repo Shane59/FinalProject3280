@@ -40,7 +40,7 @@ class Page  {
             ?>
             <?php
               if (isset($_SESSION['username'])) {
-                echo "<li><a href=Logout.php>logout</a></li>";
+                echo "<li><a href=Logout.php>logout(@". $_SESSION['username'] .")</a></li>";
               } else {
                 echo "<li><a href=Login.php>sign in!</a></li>";
               }
@@ -100,7 +100,7 @@ class Page  {
           <div class="entry-col">
             <label for="position-name"></label>
             <input type="text" name="position-name" placeholder="Position Name">
-            <select name="job-type" id="">
+            <select name="job-type" class="job-type-select" id="">
               <option value="">choose job type</option>
               <option value="full-time">full-time</option>
               <option value="part-time">part-time</option>
@@ -133,7 +133,7 @@ class Page  {
                  <div class="entry-col">
                      <label for="position-name"></label>
                      <input type="text" name="position-name" placeholder="Position Name" value="<?= $position->getPositionName() ?>">
-                     <select name="job-type" id="">
+                     <select name="job-type" class="job-type-select" id="">
                        <option value="">choose job type</option>
                         <?php
                         $jobTypes = array("full-time", "part-time", "internship", "contract");
@@ -204,9 +204,8 @@ class Page  {
 		}
 	static function showApplications($applications) {
     ?>
-    <h2>Applications you have applied!</h2>
+    <h2>You have applied <?= sizeof($applications) ?> positions:</h2>
     <table>
-      <p><?= sizeof($applications) ?> applications shown</p>
       <tr class="table-header">
         <th>Position Name</th>
         <th>Job Type</th>
@@ -241,7 +240,6 @@ class Page  {
 
   static function showApplicationsForAdmin($applications) {
     ?>
-    <h2>Applications you have applied!</h2>
     <table>
       <p><?= sizeof($applications) ?> applications shown</p>
       <tr class="table-header">
@@ -292,7 +290,7 @@ class Page  {
       <div class="entry-row">
         <div class="entry-col">
           <label for="job-type"></label>
-          <select name="job-type" id="">
+          <select name="job-type" class="job-type-select" id="">
             <option value="">choose job type</option>
             <option value="full-time">full-time</option>
             <option value="part-time">part-time</option>
@@ -369,7 +367,7 @@ class Page  {
                  </div>
              </div>
              <div class="btn-container">
-               <button class="btn-login" type="submit">Apply Position</button>
+               <button class="btn-login" type="submit">Apply</button>
                <input type="hidden" name="action" value="apply">
              </div>
          </form>

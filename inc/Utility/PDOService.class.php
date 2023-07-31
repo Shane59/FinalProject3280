@@ -47,7 +47,7 @@ class PDOService {
     }
 
     //This function prepares a query that has be passed
-    public function query(string $query)    {
+    public function query(string $query) {
         $this->_pstmt = $this->_dbh->prepare($query);
     }
 

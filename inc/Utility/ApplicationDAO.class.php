@@ -48,7 +48,7 @@ class ApplicationDAO {
     if ($username == "admin") {
       $select .= "WHERE a.positionId = p.positionId AND a.username = u.username";  
     } else {
-      $select .= "WHERE a.positionId = p.positionId AND a.username = :username";
+      $select .= "WHERE a.positionId = p.positionId AND a.username = :username AND u.username = :username";
     }
 
     if ($positionName != "" && $jobType != "") {

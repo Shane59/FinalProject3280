@@ -19,7 +19,7 @@ if (!isset($_SESSION['username'])) {
 }
 $positions = PositionDAO::getPositions();
 
-if (!empty($_POST) && $_POST['action'] == 'search') {
+if (!empty($_POST) && isset($_POST['action']) && $_POST['action'] == 'search') {
   $positions = PositionDAO::getPositionsBySearchValues($_POST['position-name'], $_POST['job-type']);
 }
 
@@ -43,8 +43,9 @@ if (isset($_SESSION['admin']) && $_SESSION['admin']) {
       if ($newPosition->getPositionName() != "") {
         PositionDAO::createPosition($newPosition);
         header("Location: FinalProject_SAo69796.php?create=true"); // avoid resend the same date when refresh the page
+      } else {
+        header("Location: FinalProject_SAo69796.php?create=false");
       }
-      header("Location: FinalProject_SAo69796.php?create=false");
     } else {
       $newPosition->setPositionId($_GET['id']);
       PositionDAO::updatePosition($newPosition);
@@ -57,7 +58,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin']) {
     echo "<h2>Positin was deleted successfully!</h2>";
   }
   if (!empty($_GET['edit']) && $_GET['edit'] == 'true') {
-    echo "<h2>Position was editted!</h2>";
+    echo "<h2>Position was edited!</h2>";
   }
   if (!empty($_GET['create']) && $_GET['create'] == 'true') {
     echo "<h2>Position was created!</h2>";
@@ -95,7 +96,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin']) {
   }
   Page::header();
   if (!empty($_GET['applied']) && $_GET['applied'] == 'true') {
-    echo "<h2>Comgratulations! We will contact you within 3 days!</h2>";
+    echo "<h2>Congratulations! We will contact you within 3 days!</h2>";
   }
   Page::searchForm();
   Page::showAllPositionsForUsers($positions);

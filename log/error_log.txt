@@ -62,3 +62,45 @@ Stack trace:
 [30-Jul-2023 20:52:04 UTC] 
 [30-Jul-2023 20:52:25 UTC] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'admin' for key 'PRIMARY'
 [30-Jul-2023 20:53:09 UTC] 
+[31-Jul-2023 05:46:05 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php:51
+Stack trace:
+#0 /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PositionDAO.class.php(20): PDOService->query('SELECT * FROM p...')
+#1 /Users/saoi/Downloads/FinalProject_SAo69796/FinalProject_SAo69796.php(20): PositionDAO::getPositions()
+#2 {main}
+  thrown in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php on line 51
+[31-Jul-2023 05:52:21 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php:51
+Stack trace:
+#0 /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PositionDAO.class.php(20): PDOService->query('SELECT * FROM p...')
+#1 /Users/saoi/Downloads/FinalProject_SAo69796/FinalProject_SAo69796.php(20): PositionDAO::getPositions()
+#2 {main}
+  thrown in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php on line 51
+[31-Jul-2023 05:53:57 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php:51
+Stack trace:
+#0 /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PositionDAO.class.php(20): PDOService->query('SELECT * FROM p...')
+#1 /Users/saoi/Downloads/FinalProject_SAo69796/FinalProject_SAo69796.php(20): PositionDAO::getPositions()
+#2 {main}
+  thrown in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php on line 51
+[31-Jul-2023 06:08:10 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php:51
+Stack trace:
+#0 /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PositionDAO.class.php(20): PDOService->query('SELECT * FROM p...')
+#1 /Users/saoi/Downloads/FinalProject_SAo69796/FinalProject_SAo69796.php(20): PositionDAO::getPositions()
+#2 {main}
+  thrown in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php on line 51
+[31-Jul-2023 06:08:58 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php:52
+Stack trace:
+#0 /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PositionDAO.class.php(20): PDOService->query('SELECT * FROM p...')
+#1 /Users/saoi/Downloads/FinalProject_SAo69796/FinalProject_SAo69796.php(20): PositionDAO::getPositions()
+#2 {main}
+  thrown in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php on line 52
+[31-Jul-2023 06:09:10 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php:52
+Stack trace:
+#0 /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PositionDAO.class.php(20): PDOService->query('SELECT * FROM p...')
+#1 /Users/saoi/Downloads/FinalProject_SAo69796/FinalProject_SAo69796.php(20): PositionDAO::getPositions()
+#2 {main}
+  thrown in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php on line 52
+[31-Jul-2023 06:13:07 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php:52
+Stack trace:
+#0 /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PositionDAO.class.php(20): PDOService->query('SELECT * FROM p...')
+#1 /Users/saoi/Downloads/FinalProject_SAo69796/FinalProject_SAo69796.php(20): PositionDAO::getPositions()
+#2 {main}
+  thrown in /Users/saoi/Downloads/FinalProject_SAo69796/inc/Utility/PDOService.class.php on line 52

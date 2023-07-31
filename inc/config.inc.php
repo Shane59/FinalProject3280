@@ -1,9 +1,9 @@
 <?php
 
-define("DB_HOST", "job-board-app-server.mysql.database.azure.com");  
+define("DB_HOST", "php-final-project.mysql.database.azure.com");  
 define("DB_USER", "shinya");  
 define("DB_PASS", "Guridon0320!");  
-define("DB_NAME", "job-board-app-database");  
+define("DB_NAME", "job_board");  
 define("DB_PORT", "3306");
 
 // definition for log file

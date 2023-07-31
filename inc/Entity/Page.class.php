@@ -26,9 +26,9 @@ class Page  {
             $page = $uri_components[sizeof($uri_components) - 1];
 
             if ($page == "FinalProject_SAo69796.php") {
-              echo "<li><a class=\"active\" href=\"/FinalProject_SAo69796.php\">HOME</a></li>";
+              echo "<li><a class=\"active\" href=\"FinalProject_SAo69796.php\">HOME</a></li>";
             } else {
-              echo "<li><a href=\"/FinalProject_SAo69796.php\">HOME</a></li>";
+              echo "<li><a href=\"FinalProject_SAo69796.php\">HOME</a></li>";
             }
             ?>
             <?php
@@ -403,7 +403,7 @@ class Page  {
                  </div>
              </div>
              <div class="btn-container">
-               <input class="btn-login" type="submit">Edit Position</button>
+               <button class="btn-login" type="submit">Edit Position</button>
                <input type="hidden" name="action" value="edit-confirm">
              </div>
          </form>

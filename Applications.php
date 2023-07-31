@@ -41,6 +41,7 @@ if (LoginManager::verifyLogin()) {
       $application->setNote($_POST['application-note']);
       ApplicationDAO::updateApplication($application, $username);
     }
+    header("Location: Applications.php");
   }
   $applications = ApplicationDAO::getApplications($username);
   if ($username == "admin") {

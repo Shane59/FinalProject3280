@@ -403,7 +403,7 @@ class Page  {
                  </div>
              </div>
              <div class="btn-container">
-               <input class="btn-login" type="submit">Apply Position</button>
+               <input class="btn-login" type="submit">Edit Position</button>
                <input type="hidden" name="action" value="edit-confirm">
              </div>
          </form>

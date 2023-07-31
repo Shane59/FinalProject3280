@@ -2,7 +2,9 @@
 
 ## About this Project
 Every company needs a place to post their position openings and manage them for the organization. Keeping track of applications for each user can take time and effort. This application helps users to maintain their job applications as well as being able to apply for the position within the same company.
-
+<br>
+This project is running on below URL:<br> 
+https://job-board-app.azurewebsites.net/FinalProject_SAo69796.php
 
 ## Set up Project
 
